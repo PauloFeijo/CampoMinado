@@ -23,7 +23,7 @@ export default props => {
     }
 
     return (
-        <TouchableWithoutFeedback 
+        <TouchableWithoutFeedback
             onPress={props.onOpen}
             onLongPress={props.onSelect}>
             <View style={styleField}>
