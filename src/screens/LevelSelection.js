@@ -7,7 +7,16 @@ import {
     Modal
 } from 'react-native'
 
-export default props => {
+ButtonLevel = props => {
+    return (
+        <TouchableOpacity style={[styles.button, props.style]}
+            onPress={() => props.onPress(props.level)}>
+            <Text style={styles.buttonLabel}>{props.label}</Text>
+        </TouchableOpacity>
+    )
+}
+
+LevelSelect = props => {
     return (
         <Modal onRequestClose={props.onCancel}
             visible={props.isVisible}
@@ -18,26 +27,22 @@ export default props => {
 
                     <Text style={styles.title}>Selecione o Nível</Text>
 
-                    <TouchableOpacity style={[styles.button, styles.bgEasy]}
-                        onPress={() => props.onLevelSelected(0.1)}>
-                        <Text style={styles.buttonLabel}>Fácil</Text>
-                    </TouchableOpacity>
+                    <ButtonLevel style={styles.bgEasy} level={0.1}
+                        label={'Fácil'} onPress={props.onLevelSelected} />
 
-                    <TouchableOpacity style={[styles.button, styles.bgNormal]}
-                        onPress={() => props.onLevelSelected(0.2)}>
-                        <Text style={styles.buttonLabel}>Intermediário</Text>
-                    </TouchableOpacity>   
+                    <ButtonLevel style={styles.bgNormal} level={0.2}
+                        label={'Intermediário'} onPress={props.onLevelSelected} />
 
-                    <TouchableOpacity style={[styles.button, styles.bgHard  ]}
-                        onPress={() => props.onLevelSelected(0.3)}>
-                        <Text style={styles.buttonLabel}>Difícil</Text>
-                    </TouchableOpacity>                                      
+                    <ButtonLevel style={styles.bgHard} level={0.3}
+                        label={'Difícil'} onPress={props.onLevelSelected} />
 
                 </View>
             </View>
         </Modal>
     )
 }
+
+export default LevelSelect
 
 const styles = StyleSheet.create({
     frame: {
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     bgEasy: {
-        backgroundColor: '#49b65d'    
+        backgroundColor: '#49b65d'
     },
     bgNormal: {
         backgroundColor: '#2765f7'
